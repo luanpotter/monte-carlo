@@ -9,7 +9,8 @@ import matplotlib.pyplot as plt
 
 MAX = 10**3
 
-theta = lambda x: math.pi * x
+ctheta = lambda x: 2*x - 1
+theta = lambda x: math.acos(ctheta(x))
 phi = lambda x: 2 * math.pi * x
 
 alpha = lambda x: math.degrees(phi(x))

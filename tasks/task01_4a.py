@@ -14,9 +14,9 @@ def plot(i, values, bins):
   plt.legend()
   plt.draw()
 
-theta = lambda x: math.pi * x
+ctheta = lambda x: 2*x - 1
+theta = lambda x: math.acos(ctheta(x))
 phi = lambda x: 2 * math.pi * x
-ctheta = lambda x: math.cos(theta(x))
 
 def run(i, fn, start, end):
   MAX = 10**5
