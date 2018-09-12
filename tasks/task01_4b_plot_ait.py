@@ -24,7 +24,7 @@ def plot_ait(RA,Dec,org=0, projection='aitoff',alpha_d=None,delta_d=None):
     ax.scatter(np.radians(y),np.radians(delta_d),color='r')
   ax.set_xticklabels(tick_labels) # we add the scale on the x axis
   ax.set_xlabel('RA')
-  ax.xaxis.label.set_fontsize(16)
+  ax.xaxis.label.set_fontsize(8)
   ax.set_ylabel('Dec')
-  ax.yaxis.label.set_fontsize(14)
+  ax.yaxis.label.set_fontsize(8)
   ax.grid(True)

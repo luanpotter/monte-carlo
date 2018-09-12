@@ -5,7 +5,7 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-MAX = None
+FILTER = 20
 
 def plot(i, values):
   plt.figure(i)
@@ -23,7 +23,7 @@ def run(i, fn, start, end):
   HIST_RANGES = 10
 
   numbers = list(map(fn, map(lambda x: random.random(), range(1, MAX))))
-  filtered = list(filter(lambda x: MAX == None or x < MAX, numbers))
+  filtered = list(filter(lambda x: FILTER == None or x < FILTER, numbers))
 
   avg = sum(numbers) / len(numbers)
   print('avg: %s' % avg)
