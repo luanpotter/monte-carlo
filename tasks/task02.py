@@ -5,7 +5,7 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-FILTER = 20
+FILTER = None
 
 def plot(i, values):
   plt.figure(i)
@@ -17,8 +17,9 @@ def plot(i, values):
   plt.draw()
 
 energy = lambda x: math.pow(1 - x, -1.0/1.6)
+loge = lambda x: math.log(energy(x))
 
-def run(i, fn, start, end):
+def run(i, fn):
   MAX = 10**5
   HIST_RANGES = 10
 
@@ -30,6 +31,7 @@ def run(i, fn, start, end):
 
   plot(i, filtered)
 
-run('energy', energy, 0, 1)
+run('energy', energy)
+run('log energy', loge)
 
 plt.show()
