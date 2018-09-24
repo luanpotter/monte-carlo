@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 
 FILTER = None
 
-def plot(i, values):
+def plot(i, values, log=False):
   plt.figure(i)
-  plt.hist(values, histtype='bar', rwidth=0.8)
+  plt.hist(values, histtype='bar', rwidth=0.8, log=log)
   plt.xlabel('x')
   plt.ylabel('y')
   plt.title('Histogram %s' % i)
@@ -19,7 +19,7 @@ def plot(i, values):
 energy = lambda x: math.pow(1 - x, -1.0/1.6)
 loge = lambda x: math.log(energy(x))
 
-def run(i, fn):
+def run(i, fn, log=False):
   MAX = 10**5
   HIST_RANGES = 10
 
@@ -29,9 +29,9 @@ def run(i, fn):
   avg = sum(numbers) / len(numbers)
   print('avg: %s' % avg)
 
-  plot(i, filtered)
+  plot(i, filtered, log)
 
-run('energy', energy)
+run('energy', energy, log=True)
 run('log energy', loge)
 
 plt.show()
