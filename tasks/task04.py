@@ -26,3 +26,10 @@ def mc(fn, a = 0, b = 1, maxy = None):
 
 fn = lambda x: x**2
 mc(fn, 2, 3)
+
+vzero = 1
+R = 0
+a = 1
+sax = lambda r: - vzero / (1 + math.exp((r - R)/a))
+sax_norm = lambda r: vzero + sax(r)
+mc(sax_norm, 0, 8)
