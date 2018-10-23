@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Monte Carlo Renderer</title>
+  <script src="pixi.min.js"></script>
+</head>
+<body>
+  <script type="text/javascript">
+    const type = PIXI.utils.isWebGLSupported() ? 'WebGL' : 'canvas';
+    PIXI.utils.sayHello(type);
+
+    const app = new PIXI.Application({
+        width: 512,
+        height: 512,
+        antialias: false,
+        transparent: false,
+        resolution: 1,
+    });
+    document.body.appendChild(app.view);
+
+    const canvas = new PIXI.Graphics();
+    // canvas.beginDraw(0xFFFFFF);
+    canvas.lineStyle(1, 0xFFFFFF);
+    canvas.drawCircle(0, 512, 512);
+
+    canvas.lineStyle(2, 0xFF00FF);
+    Array(100).fill().forEach(() => canvas.drawCircle(512 * Math.random(), 512 * Math.random(), 1));
+
+    app.stage.addChild(canvas);
+  </script>
+</body>
+</html>
