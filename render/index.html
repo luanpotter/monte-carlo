@@ -20,11 +20,13 @@
     document.body.appendChild(app.view);
 
     const canvas = new PIXI.Graphics();
-    // canvas.beginDraw(0xFFFFFF);
-    canvas.lineStyle(1, 0xFFFFFF);
+    canvas.beginFill(0x3C2F2F);
+    canvas.drawRect(0, 0, 512, 512);
+    canvas.endFill();
+    canvas.lineStyle(1, 0xFFF4E6);
     canvas.drawCircle(0, 512, 512);
 
-    canvas.lineStyle(2, 0xFF00FF);
+    canvas.lineStyle(2, 0x854442);
     Array(100).fill().forEach(() => canvas.drawCircle(512 * Math.random(), 512 * Math.random(), 1));
 
     app.stage.addChild(canvas);
