@@ -12,20 +12,20 @@ def did_hit(fn, a, b, maxy):
   ty = fn(x)
   return y <= ty
 
-def mc(fn, a = 0, b = 1, maxy = None):
+def mc(fn, a = 0, b = 1, maxy = None, it = IT):
   maxy = maxy or max(fn(a), fn(b)) # specify maxy or function must be monotonic
   rectArea = (b - a) * maxy
   hits = 0
-  for _ in range(0, IT):
+  for _ in range(it):
     if (did_hit(fn, a, b, maxy)):
       hits = hits + 1
-  intArea = rectArea * (hits / IT)
+  intArea = rectArea * (hits / it)
   return [ intArea, hits ]
 
-def mcp(fn, a = 0, b = 1, maxy = None):
-  r = mc(fn, a, b, maxy)
+def mcp(fn, a = 0, b = 1, maxy = None, it = IT):
+  r = mc(fn, a, b, maxy, it)
   print('Hits %s' % r[1])
-  print('Total %s' % IT)
+  print('Total %s' % it)
   print('Area %s' % r[0])
   return r[0]
 
