@@ -21,6 +21,11 @@
     const game = {
       _lastTime: Date.now(),
       components: [],
+      width: 512,
+      height: 512,
+      constants: {
+        alpha: 25000,
+      },
     };
 
     app.ticker.add(delta => gameLoop(game, delta));
@@ -35,28 +40,45 @@
         this.y = y;
       }
 
+      add(p) {
+        return new Point(this.x + p.x, this.y + p.y);
+      }
+
       times(m) {
         return new Point(this.x * m, this.y * m);
       }
 
-      add(p) {
-        return new Point(this.x + p.x, this.y + p.y);
+      squared() {
+        return this.x * this.x + this.y * this.y;
+      }
+
+      mod() {
+        return Math.sqrt(this.squared());
       }
     };
 
     const Particle = class {
-      constructor(p, speed) {
+      constructor(game, p, speed) {
+        this.game = game;
         this.p = p;
         this.speed = speed;
       }
 
       update(dt) {
-        this.p = this.p.add(this.speed.times(dt));
+        const modAcc = this.game.constants.alpha / this.p.squared();
+        const acc = this.p.times(modAcc / this.p.mod());
+
+        this.p = this.p.add(this.speed.times(dt)).add(acc.times(dt*dt / 2))
+        this.speed = this.speed.add(acc.times(dt));
       }
 
       render(canvas) {
-        canvas.lineStyle(2, 0x854442);
-        canvas.drawCircle(this.p.x, this.p.y, 1);
+        canvas.lineStyle(2, 0xFFF4E6);
+        canvas.drawCircle(this.game.width / 2 + this.p.x, this.game.height /2 + this.p.y, 1);
+      }
+
+      destroy() {
+        return this.p.x < 0 || this.p.y < 0 || this.p.x > this.game.width || this.p.y > this.game.height;
       }
     };
 
@@ -71,18 +93,21 @@
     const render = game => {
       const { canvas } = game;
       canvas.beginFill(0x3C2F2F);
-      canvas.drawRect(0, 0, 512, 512);
+      canvas.drawRect(0, 0, game.width, game.height);
       canvas.endFill();
+
+      canvas.lineStyle(2, 0xBE9B7B);
+      canvas.drawCircle(game.width / 2, game.height / 2, 1);
 
       game.components.forEach(p => p.render(canvas));
     };
 
     const update = (game, dt) => {
       game.components.forEach(p => p.update(dt));
+      game.components = game.components.filter(e => e.destroy());
     };
 
-    game.components.push(new Particle(new Point(10, 512/2), new Point(20, 0)));
-    game.components.push(new Particle(new Point(512 - 10, 512/2), new Point(-20, 0)));
+    game.components.push(new Particle(game, new Point(-512/2, -50), new Point(50, 0)));
   </script>
 </body>
 </html>
