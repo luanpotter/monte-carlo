@@ -1,7 +1,7 @@
 const { build, plot } = require('./plotly.js');
 
 const xs = Array(1000).fill().map((_, i) => i / 1000);
-const g = x => x * x;
+const g = x => 3 * x * x;
 
 const pt = build();
 plot(pt, {
