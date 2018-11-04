@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>Monte Carlo Renderer</title>
-  <script src="pixi.min.js"></script>
+  <script src="lib/pixi.min.js"></script>
+  <script src="lib/pixi.input.min.js"></script>
   <script src="js/constants.js"></script>
   <script src="js/point.js"></script>
   <script src="js/particle.js"></script>
@@ -16,7 +17,7 @@
 
       @font-face {
         font-family: diffusion;
-        src: url(diffusion.woff2);
+        src: url(assets/diffusion.woff2);
       }
   </style>
 </head>
@@ -62,7 +63,7 @@
     };
 
     const setup = () => {
-      const sheet = PIXI.loader.resources['spritesheet'].spritesheet;
+      const sheet = PIXI.loader.resources.sprites.spritesheet;
 
       app.ticker.add(delta => gameLoop(game, delta));
       const canvas = new PIXI.Graphics();
@@ -154,7 +155,7 @@
       game.components = game.components.filter(e => !e.destroy());
     };
 
-    PIXI.loader.add('spritesheet', 'spritesheet.json').load(setup);
+    PIXI.loader.add('sprites', 'assets/spritesheet.json').load(setup);
   </script>
 </body>
 </html>
