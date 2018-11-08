@@ -10,6 +10,12 @@
     const type = PIXI.utils.isWebGLSupported() ? 'WebGL' : 'canvas';
     PIXI.utils.sayHello(type);
 
+    const COLORS = {
+      bg: 0xFFFFFF,
+      line: 0xCCCCCC,
+      dots: 0x000000,
+    };
+
     const app = new PIXI.Application({
         width: 512,
         height: 512,
@@ -24,7 +30,7 @@
       points: [],
     };
 
-    app.ticker.add(delta => gameLoop(game, delta));
+    // app.ticker.add(delta => gameLoop(game, delta));
     const canvas = new PIXI.Graphics();
     app.stage.addChild(canvas);
     document.body.appendChild(app.view);
@@ -38,25 +44,31 @@
     };
 
     const render = game => {
-      canvas.beginFill(0x3C2F2F);
+      canvas.lineStyle(0);
+      canvas.beginFill(COLORS.bg);
       canvas.drawRect(0, 0, 512, 512);
       canvas.endFill();
 
-      canvas.lineStyle(1, 0xFFF4E6);
+      canvas.lineStyle(1, COLORS.line);
+      canvas.drawRect(1, 1, 511, 510);
       canvas.drawCircle(0, 512, 512);
 
-      canvas.lineStyle(2, 0x854442);
+      canvas.lineStyle(2, COLORS.dots);
       game.points.forEach(p => canvas.drawCircle(512 * p.x, 512 * p.y, 1));
     };
+
+    const create = () => game.points.push({ x: Math.random(), y: Math.random() });
 
     const update = (game, dt) => {
       game.clock += dt;
       while (game.clock >= 0.25) {
         game.clock -= 0.25;
-        game.points.push({ x: Math.random(), y: Math.random() });
+        create();
       }
     };
-    
+
+    Array(200).fill().forEach(create);
+    gameLoop(game, 0);
   </script>
 </body>
 </html>
