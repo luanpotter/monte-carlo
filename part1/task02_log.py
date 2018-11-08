@@ -15,7 +15,6 @@ def plot_log(values):
   plt.title('Histograma log(Energia)')
   plt.legend()
   plt.draw()
-  plt.show()
 
 energy = lambda x: math.pow(1 - x, -1.0/1.6)
 log_energy = lambda x: math.log(energy(x))
@@ -25,3 +24,4 @@ def main():
   plot_log(numbers)
 
 main()
+plt.savefig('chart.png')
