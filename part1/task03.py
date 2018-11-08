@@ -5,27 +5,19 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-def plot(i, values):
-  plt.figure(i)
-  plt.hist(values, histtype='bar', rwidth=0.8)
-  plt.xlabel('x')
-  plt.ylabel('y')
-  plt.title('Histogram %s' % i)
-  plt.legend()
-  plt.draw()
-
+MAX = 10**5
 f = lambda x: -2.2*math.log(1 - x)
 
-def run(i, fn):
-  MAX = 10**5
+def plot(values):
+  plt.hist(values, histtype='bar', rwidth=0.8, color='black')
+  plt.xlabel('Tempo de Decaimento ($\\mu s$)')
+  plt.ylabel('Frequência')
+  plt.title('Histograma dos Tempos de Decaimento para $\\tau = 2.2 \\mu s$')
 
+def run(fn):
   numbers = list(map(fn, map(lambda x: random.random(), range(1, MAX))))
-
   avg = sum(numbers) / len(numbers)
-  print('avg: %s' % avg)
+  plot(numbers)
 
-  plot(i, numbers)
-
-run('f', f)
-
-plt.show()
+run(f)
+plt.savefig('task03.png')
