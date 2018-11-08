@@ -37,17 +37,26 @@
     const game = {
       _lastTime: Date.now(),
       _lastDt: 0,
-      speed: 1,
-      repeat: false,
-      repeatClock: 0,
-      components: [],
       fullWidth: FULL_SIZE,
       width: SIZE,
       height: SIZE,
+      components: [],
+      options: {
+        speed: 1,
+        repeat: false,
+        repeatClock: 0,
+        render: true,
+      },
       constants: {
-        alpha: 25000,
+        alpha: 25080,
+        vzero: 51.2,
+        dy: SIZE/4,
         flow: 1,
       },
+      stats: {
+        total: 0,
+        hits: 0,
+      }
     };
 
     const setup = () => {
@@ -62,7 +71,8 @@
       
       game.create = () => {
         const b = Math.random() * game.height - game.height / 2;
-        game.components.push(new Particle(game, new Point(-game.width/2, b), new Point(50, 0)));
+        const vzero = game.constants.vzero;
+        game.components.push(new Particle(game, new Point(-game.width/2, b), new Point(vzero, 0)));
       };
     };
 
@@ -71,7 +81,7 @@
       const dt = time - game._lastTime;
       game._lastTime = time;
       update(game, dt / 1000);
-      render(game);
+      game.options.render && render(game);
     };
 
     const render = game => {
@@ -95,19 +105,19 @@
     };
 
     const update = (game, dt) => {
-      dt *= game.speed;
+      dt *= game.options.speed;
       if (dt === 0) {
         return;
       }
 
-      if (game.repeat) {
-        game.repeatClock += dt;
-        while (game.repeatClock > 1/game.constants.flow) {
-          game.repeatClock -= 1/game.constants.flow;
+      if (game.options.repeat) {
+        game.options.repeatClock += dt;
+        while (game.options.repeatClock > 1/game.constants.flow) {
+          game.options.repeatClock -= 1/game.constants.flow;
           game.create();
         }
       } else {
-        game.repeatClock = 0;
+        game.options.repeatClock = 0;
       }
 
       dt += game._lastDt;
