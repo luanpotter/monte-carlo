@@ -14,7 +14,7 @@ def plot_ait(RA,Dec,org=0, projection='aitoff',alpha_d=None,delta_d=None):
   x=-x # reverse the scale: East to the left
   tick_labels = np.array([150, 120, 90, 60, 30, 0, 330, 300, 270, 240, 210])
   tick_labels = np.remainder(tick_labels+360+org,360)
-  fig = plt.figure()
+  fig = plt.figure(dpi=100)
   ax = fig.add_subplot(111, projection=projection)
   ax.scatter(np.radians(x),np.radians(Dec),s=12,marker='.',color='#03a0ff') # convert degrees to radians
   if alpha_d is not None and delta_d is not None:

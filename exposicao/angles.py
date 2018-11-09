@@ -8,7 +8,7 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-MAX = 10**3
+MAX = 10**4
 
 ctheta = lambda x: 2*x - 1
 theta = lambda x: math.acos(ctheta(x))
@@ -35,6 +35,7 @@ for i in range(MAX):
         r[0].append(alpha)
         r[1].append(delta)
 
+# plot_ait(np.array(alphas), np.array(deltas))
 plot_ait(np.array(r[0]), np.array(r[1]))
-plot_ait(np.array(alphas), np.array(deltas))
-plt.show()
+# plt.show()
+plt.savefig('ait.png')
