@@ -35,6 +35,7 @@ for i in range(MAX):
         r[0].append(alpha)
         r[1].append(delta)
 
+print('Selected points %d' % len(r[0]))
 # plot_ait(np.array(alphas), np.array(deltas))
 plot_ait(np.array(r[0]), np.array(r[1]))
 plt.show()
