@@ -29,7 +29,6 @@ def main():
   deltas_degrees = list(map(np.degrees, deltas))
   omegas = list(map(omega, deltas))
   plot(deltas_degrees, omegas)
+  plt.savefig('omegas.png')
 
-main()
-# plt.show()
-plt.savefig('omegas.png')
+# main()
