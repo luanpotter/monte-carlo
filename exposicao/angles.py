@@ -22,7 +22,7 @@ run = lambda fn: list(map(fn, map(lambda x: random.random(), range(MAX))))
 alphas = run(alpha)
 deltas = run(delta)
 
-omegas_r = list(map(omega, deltas))
+omegas_r = list(map(lambda d: omega(np.radians(d)), deltas))
 omega_m = max(omegas_r)
 omegas = list(map(lambda w: w/omega_m, omegas_r))
 
