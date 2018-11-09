@@ -37,5 +37,5 @@ for i in range(MAX):
 
 # plot_ait(np.array(alphas), np.array(deltas))
 plot_ait(np.array(r[0]), np.array(r[1]))
-# plt.show()
-plt.savefig('ait.png')
+plt.show()
+# plt.savefig('ait.png')
