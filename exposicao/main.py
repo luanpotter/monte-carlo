@@ -31,4 +31,5 @@ def main():
   plot(deltas_degrees, omegas)
 
 main()
-plt.show()
+# plt.show()
+plt.savefig('omegas.png')
