@@ -13,6 +13,6 @@ def f(x): return 1/(x*sigma*sqrt(2*pi))*exp((-(ln(x)-mu)**2)/(2*sigma**2))
 def mc_it(it): return mc(f, 0, 2, 2, it)[0]
 def run(it): print('%d : %s' % (it, mc_it(it)))
 
-its = [ 6, 7, 8 ]
+its = [ 9 ]
 for it in its:
     run(10**it)
