@@ -9,9 +9,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 MAX = 10**4
+D = 1
 
-ctheta = lambda x: 2*x - 1
-theta = lambda x: math.acos(ctheta(x))
+theta = lambda x: math.acos((math.sqrt(1 - 4*D*x + D**2 + 2*D)  - 1)/ D)
 phi = lambda x: 2 * math.pi * x
 
 alpha = lambda x: math.degrees(phi(x))
@@ -37,4 +37,4 @@ for i in range(MAX):
 
 print('Selected points %d' % len(r[0]))
 plot_ait(np.array(r[0]), np.array(r[1]))
-plt.savefig('ait_2.png')
+plt.savefig('ait_dip2.png')

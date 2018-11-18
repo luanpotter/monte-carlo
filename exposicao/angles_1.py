@@ -9,9 +9,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 MAX = 5*10**3
+D = 1
 
-ctheta = lambda x: 2*x - 1
-theta = lambda x: math.acos(ctheta(x))
+theta = lambda x: math.acos((math.sqrt(1 - 4*D*x + D**2 + 2*D)  - 1)/ D)
 phi = lambda x: 2 * math.pi * x
 
 alpha = lambda x: math.degrees(phi(x))
@@ -23,4 +23,4 @@ alphas = run(alpha)
 deltas = run(delta)
 
 plot_ait(np.array(alphas), np.array(deltas))
-plt.savefig('ait_1.png')
+plt.savefig('ait_dipolo.png')
