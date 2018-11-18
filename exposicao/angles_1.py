@@ -8,7 +8,7 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-MAX = 10**4
+MAX = 5*10**3
 
 ctheta = lambda x: 2*x - 1
 theta = lambda x: math.acos(ctheta(x))
@@ -22,19 +22,5 @@ run = lambda fn: list(map(fn, map(lambda x: random.random(), range(MAX))))
 alphas = run(alpha)
 deltas = run(delta)
 
-omegas_r = list(map(lambda d: omega(np.radians(d)), deltas))
-omega_m = max(omegas_r)
-omegas = list(map(lambda w: w/omega_m, omegas_r))
-
-r = [[], []]
-for i in range(MAX):
-    alpha = alphas[i]
-    delta = deltas[i]
-    omega = omegas[i]
-    if random.random() < omega:
-        r[0].append(alpha)
-        r[1].append(delta)
-
-print('Selected points %d' % len(r[0]))
-plot_ait(np.array(r[0]), np.array(r[1]))
-plt.savefig('ait_2.png')
+plot_ait(np.array(alphas), np.array(deltas))
+plt.savefig('ait_1.png')
