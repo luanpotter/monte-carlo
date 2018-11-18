@@ -19,12 +19,15 @@ def plot_ait(alpha, delta, origin = 0):
 
   fig = plt.figure(dpi=200)
   ax = fig.add_subplot(111, projection='aitoff')
-  ax.scatter(x, y, s=1, marker='.', color='grey') # convert degrees to radians
-  ax.set_xticklabels(tick_labels) # we add the scale on the x axis
+  ax.scatter(x, y, s=1, marker='.', color='grey')
+
+  # configure ticks and labels
+  ax.set_xticklabels(tick_labels, fontsize=8)
+  for tick in ax.yaxis.get_major_ticks(): tick.label.set_fontsize(8)
   ax.set_xlabel('Ascensão Reta')
-  ax.xaxis.label.set_fontsize(6)
+  ax.xaxis.label.set_fontsize(8)
   ax.set_ylabel('Declinação')
-  ax.yaxis.label.set_fontsize(6)
+  ax.yaxis.label.set_fontsize(8)
   ax.grid(True)
 
   return fig
