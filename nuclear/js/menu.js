@@ -45,7 +45,7 @@ const Menu = {
                 new Column([
                     new Row([
                         new Label('vzero (px/ps)', STYLES.small),
-                        new Button(sheet, 'config', () => {
+                        new Button(sheet, 'dice', () => {
                             if (game.constants.vzero.current !== null) {
                                 game.constants.vzero.current = null;
                                 refs.vzero.set(false);
@@ -68,7 +68,7 @@ const Menu = {
                 new Column([
                     new Row([
                         new Label('b (px)', STYLES.small),
-                        new Button(sheet, 'config', () => {
+                        new Button(sheet, 'dice', () => {
                             if (game.constants.b.current !== null) {
                                 game.constants.b.current = null;
                                 refs.b.set(false);
