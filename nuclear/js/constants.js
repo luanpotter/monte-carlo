@@ -1,9 +1,9 @@
-const STEP = 0.1;
-const MARGIN = 16;
-const SM = MARGIN / 2;
-const SSM = SM / 2;
-const SIZE = 512;
-const FULL_SIZE = 2 * SIZE + MARGIN;
+const STEP = 0.1; // ps (pixeconds)
+const MARGIN = 16; // px
+const SM = MARGIN / 2; // px
+const SSM = SM / 2; // px
+const SIZE = 512; // px
+const FULL_SIZE = 2 * SIZE + MARGIN; // px
 
 const STYLES = {
     title: new PIXI.TextStyle({
