@@ -1,5 +1,3 @@
-const random = (min, max) => Math.random() * (max - min) + min;
-
 const App = {
     run() {
         const type = PIXI.utils.isWebGLSupported() ? 'WebGL' : 'canvas';
@@ -12,13 +10,6 @@ const App = {
             transparent: false,
             resolution: 1,
         });
-
-        const getValueOrGenerate = constant => {
-            if (constant.current === null) {
-                return random(constant.min, constant.max);
-            }
-            return constant.current;
-        };
 
         const game = {
             _lastTime: Date.now(),
@@ -33,21 +24,41 @@ const App = {
                 repeatClock: 0,
             },
             constants: {
-                alpha: 1812,
+                xi: {
+                    title: 'Xi (px^3/ps^2)',
+                    min: 10,
+                    max: 10000,
+                    default: 1812,
+                    current: 1812,
+                },
                 vzero: {
+                    title: 'vzero (px/ps)',
                     min: 30,
                     max: 60,
                     default: 51.2,
                     current: 51.2,
                 },
                 b: {
+                    title: 'b (px)',
                     min: -SIZE / 2,
                     max: SIZE / 2,
                     default: 0,
                     current: null,
                 },
-                theta: 45,
-                flow: 100,
+                theta: {
+                    title: 'theta (degrees)',
+                    min: 0,
+                    max: 90,
+                    default: 45,
+                    current: 45,
+                },
+                flow: {
+                    title: 'Flow (particles/ps)',
+                    min: 1,
+                    max: 100,
+                    default: 1,
+                    current: 100,
+                }
             },
             stats: {
                 total: 0,
@@ -67,7 +78,11 @@ const App = {
             const bg = new Background();
             app.stage.addChild(bg.toPixi(game));
 
-            Menu.create(app, game);
+            const menu = new PIXI.Container();
+            app.stage.addChild(menu);
+            game.menu = menu;
+            game.resetMenu = () => Menu.create(menu, game);
+            game.resetMenu();
 
             game.create = () => {
                 const b = getValueOrGenerate(game.constants.b);
@@ -78,6 +93,7 @@ const App = {
             };
 
             document.getElementById('root').replaceWith(app.view);
+            Modal.setup(game);
         };
 
         const gameLoop = () => {
@@ -94,12 +110,13 @@ const App = {
         };
 
         const update = (game, dt) => {
+            const flow = getValueOrGenerate(game.constants.flow);
             dt += game._lastDt;
             while (dt >= STEP) {
                 if (game.options.repeat) {
                     game.options.repeatClock += STEP;
-                    while (game.options.repeatClock > 1 / game.constants.flow) {
-                        game.options.repeatClock -= 1 / game.constants.flow;
+                    while (game.options.repeatClock > 1 / flow) {
+                        game.options.repeatClock -= 1 / flow;
                         game.create();
                     }
                 } else {
