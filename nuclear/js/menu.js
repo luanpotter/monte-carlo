@@ -36,8 +36,8 @@ const Menu = {
                 new Column([
                     new Label('Xi (px^3/ps^2)', STYLES.small),
                     new SliderInput(sheet, {
-                        min: 20000,
-                        max: 30000,
+                        min: 100,
+                        max: 10000,
                         get: () => game.constants.alpha,
                         set: v => (game.constants.alpha = v) && game.stats.reset(),
                     }),
@@ -90,12 +90,12 @@ const Menu = {
                     }).ref(v => refs.b = v),
                 ], SM, SSM),
                 new Column([
-                    new Label('delta y (px)', STYLES.small),
+                    new Label('theta (degrees)', STYLES.small),
                     new SliderInput(sheet, {
                         min: 0,
-                        max: SIZE/2,
-                        get: () => game.constants.dy,
-                        set: v => (game.constants.dy = v) && game.stats.reset(),
+                        max: 45,
+                        get: () => game.constants.theta,
+                        set: v => (game.constants.theta = v) && game.stats.reset(),
                     }),
                 ], SM, SSM),
             ], SM, SM),

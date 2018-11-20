@@ -33,7 +33,7 @@ const App = {
                 repeatClock: 0,
             },
             constants: {
-                alpha: 25080,
+                alpha: 1812,
                 vzero: {
                     min: 30,
                     max: 60,
@@ -46,8 +46,8 @@ const App = {
                     default: 0,
                     current: null,
                 },
-                dy: SIZE/4,
-                flow: 1,
+                theta: 45,
+                flow: 100,
             },
             stats: {
                 total: 0,
@@ -72,7 +72,7 @@ const App = {
             game.create = () => {
                 const b = getValueOrGenerate(game.constants.b);
                 const vzero = getValueOrGenerate(game.constants.vzero);
-                const pt = new Particle(game, new Point(-game.width/2, b), new Point(vzero, 0));
+                const pt = new Particle(game, b, vzero);
                 game.components.push(pt);
                 app.stage.addChild(pt.toPixi(game));
             };

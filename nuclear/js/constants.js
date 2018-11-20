@@ -1,4 +1,4 @@
-const STEP = 0.1; // ps (pixeconds)
+const STEP = 0.01; // ps (pixeconds)
 const MARGIN = 16; // px
 const SM = MARGIN / 2; // px
 const SSM = SM / 2; // px
