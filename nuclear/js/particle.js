@@ -57,9 +57,9 @@ const Particle = class {
   destroy(stage) {
     const shouldDestroy =
       this.p.x < -(this.game.width / 2) ||
-      this.p.y < -(this.game.height / 2) ||
+      this.p.y < - 3 * this.game.height ||
       this.p.x > this.game.width / 2 - SM ||
-      this.p.y > this.game.height / 2 - SM;
+      this.p.y > 3 * this.game.height;
 
     if (shouldDestroy) {
       this.runStats();
@@ -70,6 +70,10 @@ const Particle = class {
   }
 
   runStats() {
+    if (this.p.y <= -3 * SIZE || this.p.y >= 3 * SIZE) {
+      return;
+    }
+
     this.game.stats.total += 1;
     this.game.stats.hits += this.isHit() ? 1 : 0;
     this.game.stats.prob = this.game.stats.hits / this.game.stats.total;
@@ -82,11 +86,11 @@ const Particle = class {
 
     const yf = this.p.y;
     const dy = yf - this.b;
-    const ttheta = dy / SIZE;
+    const ttheta = dy / (SIZE / 2);
     const theta = Math.atan(ttheta);
     this.game.stats.thetas.push(theta);
 
     const thetaMax = toRadians(getValueOrGenerate(this.game.constants.theta));
-    return Math.abs(theta) > thetaMax;
+    return Math.abs(theta) >= thetaMax;
   }
 };

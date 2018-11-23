@@ -20,7 +20,7 @@ const ModalStats = {
                 const values = bins.map((bin, i) => {
                     const prev = i === 0 ? bins[0] - 1 : bins[i - 1];
                     const next = i === bins.length - 1 ? bins[i - 1] + 1 : bins[i];
-                    const y = thetas.map(toDegrees).filter(t => prev < t && t <= next).length;
+                    const y = thetas.map(toDegrees).map(Math.abs).filter(t => prev < t && t <= next).length;
                     return { x: bin, y };
                 });
                 const maxy = values.reduce((a, b) => a > b.y ? a : b.y);

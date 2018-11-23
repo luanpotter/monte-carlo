@@ -122,7 +122,7 @@ const ModalConfig = {
                 lock: true,
             },
             vzero: {
-                rw: parseFloat('2e7'),
+                rw: parseFloat('1e6'),
                 s: parseFloat('51.2'),
                 lock: false,
             },
