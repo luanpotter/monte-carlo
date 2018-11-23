@@ -27,7 +27,6 @@ const Particle = class {
     this.p.x += this.speed.x * dt + speedIncX * dt / 2;
     this.p.y += this.speed.y * dt + speedIncY * dt / 2;
 
-    const _asd = this.speed.x;
     this.speed.x += speedIncX;
     this.speed.y += speedIncY;
 
@@ -87,7 +86,7 @@ const Particle = class {
     const theta = Math.atan(ttheta);
     this.game.stats.thetas.push(theta);
 
-    const thetaMax = getValueOrGenerate(this.game.constants.theta);
+    const thetaMax = toRadians(getValueOrGenerate(this.game.constants.theta));
     return Math.abs(theta) > thetaMax;
   }
 };
