@@ -80,12 +80,12 @@ const Particle = class {
   }
 
   isHit() {
-    if (this.p.x <= SIZE / 2 - MARGIN) {
+    if (this.p.x <= -SIZE / 2 - MARGIN) {
       return true;
     }
 
     const yf = this.p.y;
-    const dy = yf - this.b;
+    const dy = Math.abs(yf - this.b);
     const ttheta = dy / (SIZE / 2);
     const theta = Math.atan(ttheta);
     this.game.stats.thetas.push(theta);
