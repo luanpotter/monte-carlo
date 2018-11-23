@@ -21,7 +21,7 @@ const ModalStats = {
                 const values = bins.map(bin => {
                     const y = thetas.map(toDegrees).map(Math.abs).filter(t => bin[0] < t && t <= bin[1]).length;
                     return { x: bin, y };
-                }).slice(1);
+                });
                 const maxy = values.reduce((a, b) => a > b.y ? a : b.y);
                 const miny = values.filter(b => b.y !== 0).reduce((a, b) => a < b.y ? a : b.y);
 
