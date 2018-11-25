@@ -11,7 +11,7 @@ BINS = 10
 r = lambda: random.random()
 lmap = lambda arr, fn: list(map(fn, arr))
 
-theta = lambda x: math.acos(2*x - 1)
+theta = lambda x: math.acos(1 - 2*x)
 phi = lambda x: 2 * math.pi * x
 
 run = lambda fn: lmap(lmap(range(MAX), lambda x: r()), fn)
