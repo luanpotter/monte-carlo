@@ -15,7 +15,7 @@ theta = lambda x: math.acos((math.sqrt(1 - 4*D*x + D**2 + 2*D)  - 1)/ D)
 phi = lambda x: 2 * math.pi * x
 
 alpha = lambda x: math.degrees(phi(x))
-delta = lambda x: math.degrees(theta(x) - math.pi / 2)
+delta = lambda x: math.degrees(math.pi / 2 - theta(x))
 
 run = lambda fn: list(map(fn, map(lambda x: random.random(), range(MAX))))
 
