@@ -14,7 +14,7 @@ def plot(values):
   plt.axvline(x=2.2)
   plt.xlabel('Tempo de Decaimento ($\\mu s$)')
   plt.ylabel('Frequência')
-  plt.title('Histograma dos Tempos de Decaimento para $\\tau = 2.2 \\mu s$')
+  plt.title('Histograma dos Tempos de Decaimento para $\\tau = 2,2$ μs')
 
 def run(fn):
   numbers = list(map(fn, map(lambda x: random.random(), range(MAX))))
