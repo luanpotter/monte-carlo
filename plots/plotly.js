@@ -37,6 +37,9 @@ const plot = (plotly, x, y, name, cb) => {
         filename: 'chart-test-' + name,
         fileopt: 'overwrite',
         layout: {
+            font: {
+                size: 16,
+            },
             xaxis: {
                 title: x.title,
                 color: '#000000',
